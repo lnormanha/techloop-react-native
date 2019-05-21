@@ -7,29 +7,23 @@
  */
 
 import React, { Component } from "react";
-import { Platform, StyleSheet, Text, View } from "react-native";
-
+import { Platform, StyleSheet, Text, View, SafeAreaView } from "react-native";
+import ToDoList from "./src/components/ToDoList";
 export default class App extends Component {
   render() {
-    return <View style={styles.container} />;
+    return (
+      <SafeAreaView style={styles.container}>
+        <ToDoList />
+      </SafeAreaView>
+    );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
     alignItems: "center",
+    justifyContent: "center",
     backgroundColor: "#F5FCFF"
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: "center",
-    margin: 10
-  },
-  instructions: {
-    textAlign: "center",
-    color: "#333333",
-    marginBottom: 5
   }
 });
