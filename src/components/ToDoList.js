@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { View, FlatList, Text } from "react-native";
+import ToDoItem from "./ToDoItem";
 import styles from "./styles/ToDoListStyle";
 
 export default class ToDoList extends Component {
@@ -9,9 +10,13 @@ export default class ToDoList extends Component {
   }
 
   render() {
+    const { data } = this.props;
     return (
       <View style={styles.container}>
-        <Text style={styles.text}> Isso é uma ToDoList </Text>
+        <FlatList
+          data={data}
+          renderItem={({ item }) => <ToDoItem text={item.text} />}
+        />
       </View>
     );
   }
