@@ -18,19 +18,48 @@ import {
 import ToDoList from "./src/components/ToDoList";
 import AddToDoScreen from "./src/containers/AddToDoScreen";
 export default class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      toDoList: [],
+      currentScreen: "ToDoListScreen"
+    };
+  }
+
   render() {
     return (
       <SafeAreaView style={styles.container}>
-        <View style={styles.header}>
-          <Text style={styles.title}>Sua lista de tarefas</Text>
-          <TouchableOpacity>
-            <Text style={styles.add}>Adicionar</Text>
-          </TouchableOpacity>
-        </View>
-        <AddToDoScreen />
+        {this.renderContent()}
       </SafeAreaView>
     );
   }
+
+  renderContent() {
+    const { currentScreen, taskList } = this.state;
+    switch (currentScreen) {
+      case "ToDoListScreen":
+        return (
+          <View>
+            <View style={styles.header}>
+              <Text style={styles.title}>Sua lista de tarefas</Text>
+              <TouchableOpacity onPress={this.goToAddToDoScreen}>
+                <Text style={styles.add}>Adicionar</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        );
+      case "AddToDoScreen":
+        return <AddToDoScreen goBack={this.goBack} />;
+    }
+  }
+
+  goToAddToDoScreen = () => {
+    this.setState({ currentScreen: "AddToDoScreen" });
+  };
+
+  goBack = () => {
+    this.setState({ currentScreen: "ToDoListScreen" });
+  };
 }
 
 const styles = StyleSheet.create({

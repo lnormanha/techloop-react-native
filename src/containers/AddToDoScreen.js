@@ -17,9 +17,10 @@ export default class AddToDoScreen extends Component {
   }
 
   render() {
+    const { goBack } = this.props;
     return (
       <View style={styles.container}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={goBack}>
           <Text style={styles.back}>Voltar</Text>
         </TouchableOpacity>
         <Text style={styles.title}>Informe sua tarefa</Text>
