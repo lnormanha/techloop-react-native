@@ -35,21 +35,23 @@ export default class App extends Component {
   }
 
   renderContent() {
-    const { currentScreen, taskList } = this.state;
+    const { currentScreen } = this.state;
     switch (currentScreen) {
       case "ToDoListScreen":
         return (
-          <View>
+          <View style={{ flex: 1, backgroundColor: "white" }}>
             <View style={styles.header}>
               <Text style={styles.title}>Sua lista de tarefas</Text>
               <TouchableOpacity onPress={this.goToAddToDoScreen}>
                 <Text style={styles.add}>Adicionar</Text>
               </TouchableOpacity>
             </View>
+            <View style={{ marginVertical: 10 }} />
+            <ToDoList data={this.state.toDoList} />
           </View>
         );
       case "AddToDoScreen":
-        return <AddToDoScreen goBack={this.goBack} />;
+        return <AddToDoScreen addToDo={this.addToDo} goBack={this.goBack} />;
     }
   }
 
@@ -60,17 +62,33 @@ export default class App extends Component {
   goBack = () => {
     this.setState({ currentScreen: "ToDoListScreen" });
   };
+
+  addToDo = toDo => {
+    const { toDoList } = this.state;
+
+    let list = toDoList;
+
+    let item = {
+      text: `${list.length + 1}. ${toDo}`
+    };
+
+    list.push(item);
+    this.setState({ toDoList: list });
+
+    console.log({ toDoList });
+    this.goBack();
+  };
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#F5FCFF"
+    backgroundColor: "white"
   },
   header: {
     height: 80,
     width: "100%",
-    backgroundColor: "#F5FCFF",
+    backgroundColor: "white",
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",

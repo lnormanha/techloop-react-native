@@ -10,6 +10,7 @@ export default StyleSheet.create({
     borderColor: "gray"
   },
   text: {
+    marginLeft: 10,
     fontSize: 16,
     color: "black",
     fontWeight: "400"

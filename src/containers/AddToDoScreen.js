@@ -17,15 +17,23 @@ export default class AddToDoScreen extends Component {
   }
 
   render() {
-    const { goBack } = this.props;
+    const { goBack, addToDo } = this.props;
     return (
       <View style={styles.container}>
         <TouchableOpacity onPress={goBack}>
           <Text style={styles.back}>Voltar</Text>
         </TouchableOpacity>
         <Text style={styles.title}>Informe sua tarefa</Text>
-        <TextInput style={styles.input} />
-        <TouchableOpacity style={styles.button}>
+        <TextInput
+          style={styles.input}
+          value={this.state.toDo}
+          onChangeText={text => this.setState({ toDo: text })}
+          autoFocus
+        />
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => addToDo(this.state.toDo)}
+        >
           <Text style={styles.buttonText}>Adicionar Tarefa</Text>
         </TouchableOpacity>
       </View>

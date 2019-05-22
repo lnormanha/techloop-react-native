@@ -12,12 +12,13 @@ export default class ToDoList extends Component {
   render() {
     const { data } = this.props;
     return (
-      <View style={styles.container}>
-        <FlatList
-          data={data}
-          renderItem={({ item }) => <ToDoItem text={item.text} />}
-        />
-      </View>
+      <FlatList
+        data={data}
+        renderItem={({ item }) => {
+          return <ToDoItem text={item.text} />;
+        }}
+        keyExtractor={item => item.text.toString()}
+      />
     );
   }
 }
