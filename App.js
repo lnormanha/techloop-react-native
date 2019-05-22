@@ -16,6 +16,7 @@ import {
   TouchableOpacity
 } from "react-native";
 import ToDoList from "./src/components/ToDoList";
+import AddToDoScreen from "./src/containers/AddToDoScreen";
 export default class App extends Component {
   render() {
     return (
@@ -26,6 +27,7 @@ export default class App extends Component {
             <Text style={styles.add}>Adicionar</Text>
           </TouchableOpacity>
         </View>
+        <AddToDoScreen />
       </SafeAreaView>
     );
   }
@@ -34,7 +36,6 @@ export default class App extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-
     backgroundColor: "#F5FCFF"
   },
   header: {
